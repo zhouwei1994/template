@@ -13,7 +13,14 @@ function async(url = '', data = {}, type = 'GET', options = {}, httpUrl = baseUr
   if (type == 'FORM') {
     ajaxType = 'POST';
     dataStr = data;
-  } else {
+  } else if(type == 'PUT'){
+    if(options.putType == 'file'){
+      dataStr = data;
+    }else{
+      dataStr = JSON.stringify(data);
+    }
+
+  }else {
     Object.keys(data).forEach(key => {
       dataStr += key + '=' + data[key] + '&';
     })
@@ -31,7 +38,7 @@ function async(url = '', data = {}, type = 'GET', options = {}, httpUrl = baseUr
   }
   return new Promise((resolve, reject) => {
     if(!options.load){
-      store.commit('getDataLoading', true)
+      store.commit('setDataLoading', true)
     }
     if(type == 'JSONP'){
       window.process = function(data){
@@ -42,7 +49,7 @@ function async(url = '', data = {}, type = 'GET', options = {}, httpUrl = baseUr
       document.head.appendChild(script);
       // 及时删除，防止加载过多的JS
       document.head.removeChild(script);
-      store.commit('getDataLoading', false);
+      store.commit('setDataLoading', false);
     }else{
       let requestObj;
       if (window.XMLHttpRequest) {
@@ -53,19 +60,24 @@ function async(url = '', data = {}, type = 'GET', options = {}, httpUrl = baseUr
       requestObj.open(ajaxType, url, true);
       // requestObj.withCredentials = true;//通过将withCredentials属性设置为true，可以指定某个请求应该发送凭据
       if (type != 'FORM') {
-        requestObj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        if(type == 'PUT' && options.putType != 'file'){
+          requestObj.setRequestHeader("Content-Type", "application/json");
+        }else if(type != 'PUT'){
+          requestObj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+        }
       }
       if(options.language){
         requestObj.setRequestHeader("Accept-Language", "zh-CN,zh;q=0.8");
       }
-      if(httpUrl == baseUrl){
-        let user_token = store.state.userinfo.token ? store.state.userinfo.token : '';
-        requestObj.setRequestHeader("token", user_token);
-      }
+      // if(httpUrl == baseUrl){
+      //   let user_token = store.state.userInfo.token ? store.state.userInfo.token : '';
+      //   requestObj.setRequestHeader("token", user_token);
+      // }
+      console.log(dataStr);
       requestObj.send(dataStr);
       requestObj.onreadystatechange = () => {
         if (requestObj.readyState == 4) {
-          store.commit('setLoading', false)
+          store.commit('setDataLoading', false)
           if (requestObj.status == 200) {
             let obj = requestObj.response
             if (typeof obj !== 'object') {
@@ -84,7 +96,7 @@ function async(url = '', data = {}, type = 'GET', options = {}, httpUrl = baseUr
   //数据处理
   function handle(obj) {
     if (parseInt(obj.code) == 0) {
-      if (jugleType(options.success) == "Function") {
+      if (options.success) {
         //执行默认的成功方法
         options.success(obj);
         return obj;
@@ -96,11 +108,6 @@ function async(url = '', data = {}, type = 'GET', options = {}, httpUrl = baseUr
     }
   }
 }
-//校验数据是否为空，不为空返回true
-function verifyNull(data) {
-  let result = data && data != "null" && data != "undefined" && data != {} && data != [] ? true : false;
-  return result;
-}
 export {
-  async, verifyNull
+  async
 }
