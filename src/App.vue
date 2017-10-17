@@ -13,10 +13,12 @@
 import { mapState, mapMutations } from 'vuex'
 import headTop from '@/components/header/head'
 import footGuide from '@/components/footer/footGuide'
+import loading from '@/components/common/loading'
 export default {
   components:{
     headTop,
-    footGuide
+    footGuide,
+    loading
   },
   data () {
     return {
