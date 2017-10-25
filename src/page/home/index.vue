@@ -42,16 +42,13 @@ export default {
     }
   },
   methods: {
-
+    
   },
-  mounted() {
-
-  }
 }
 </script>
 <style lang="scss" scoped>
-@import 'src/style/mixin';
-@import '../../../node_modules/swiper/dist/css/swiper.min.css';
+@import "src/style/mixin";
+@import "../../../node_modules/swiper/dist/css/swiper.min.css";
 .swiper-container {
   width: 600;
   height: 300px;
