@@ -1,22 +1,19 @@
 <template>
   <div>
+    <z-header>首页</z-header>
     <!-- 轮播图 -->
     <swiper class="mod-banner-scroll" :options="swiperOption">
       <swiper-slide v-for="(item,index) of colorList" :key="index">
-        <div :style="`backgroundColor:${item}`">
-          {{item}}{{index}}
-        </div>
+        <div :style="`backgroundColor:${item}`">{{item}}{{index}}</div>
       </swiper-slide>
       <!-- 如果需要分页器 -->
       <div class="swiper-pagination" slot="pagination"></div>
-      <!-- 如果需要导航按钮 -->
-      <div class="swiper-button-prev" slot="button-prev"></div>
-      <div class="swiper-button-next" slot="button-next"></div>
     </swiper>
+    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/zEqq1Ww9bticF0akmjlprTv6QQ7qnKuib8N6oROZVtBgkLb7q2s9rpmia7ptUnv1G8p1zK6wYqFIIj04dbictiaFNfQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="">
   </div>
 </template>
 <script>
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
   components: {
     swiper,
@@ -24,7 +21,7 @@ export default {
   },
   data() {
     return {
-      colorList: ['red', 'yellow', 'gray', 'pink'],
+      colorList: ["red", "yellow", "gray", "pink"],
       swiperOption: {
         autoplay: 3200,
         setWrapperSize: true,
@@ -32,28 +29,28 @@ export default {
         loop: true,
         speed: 1000,
         //设置分页
-        pagination: '.swiper-pagination',
+        pagination: ".swiper-pagination",
         //设置分页点击
         paginationClickable: true,
-        //设置上一页，下一页
-        prevButton: '.swiper-button-prev',
-        nextButton: '.swiper-button-next',
+        autoplayDisableOnInteraction: false
       }
-    }
+    };
   },
-  methods: {
+  watch: {},
+  methods: {},
+  mounted() {
     
-  },
-}
+  }
+};
 </script>
 <style lang="scss" scoped>
 @import "src/style/mixin";
 @import "../../../node_modules/swiper/dist/css/swiper.min.css";
 .swiper-container {
-  width: 600;
-  height: 300px;
+  width: 100%;
+  height: rem(300);
   .swiper-slide div {
-    height: 300px;
+    height: rem(300);
   }
 }
 </style>

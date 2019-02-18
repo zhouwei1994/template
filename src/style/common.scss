@@ -1,29 +1,101 @@
 @charset "utf-8";
 @import "./mixin";
-body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4,h5, h6, i, b, textarea, button, input, select, figure, figcaption, {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    font-style: normal;
-    text-decoration: none;
-    border: none;
-    color: #333;
-    font-weight: normal;
-    font-family: "Microsoft Yahei";
-    box-sizing: border-box;
-    -webkit-tap-highlight-color:transparent;
-    -webkit-font-smoothing: antialiased;
-    &:hover{
-        outline: none;
-    }
+
+body,
+div,
+span,
+header,
+footer,
+nav,
+section,
+aside,
+article,
+ul,
+dl,
+dt,
+dd,
+li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+i,
+b,
+textarea,
+button,
+input,
+select,
+figure,
+figcaption,
+  {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-style: normal;
+  text-decoration: none;
+  border: none;
+  color: #333;
+  font-weight: normal;
+  font-family: "Microsoft Yahei";
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+
+  &:hover {
+    outline: none;
+  }
 }
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #555;
+}
+
+input[type="button"],
+input[type="submit"],
+input[type="search"],
+input[type="reset"] {
+  -webkit-appearance: none;
+}
+
+textarea {
+  -webkit-appearance: none;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: #F5F5F5;
+}
+
 //弹出框
 .prompt {
   position: fixed;
   top: 25%;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
   padding: rem(10) rem(30);
   border-radius: rem(10);
   z-index: 5000;
@@ -33,101 +105,137 @@ body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, l
   transition: all 0.6s;
   font-size: rem(32);
 }
-.icon {
-  font-family: 'iconfont';
-  font-size: rem(28);
-  color: #666;
-}
-/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
-::-webkit-scrollbar
-{
-    width: 0px;
-    height: 0px;
-    background-color: #F5F5F5;
-}
 
-/*定义滚动条轨道 内阴影+圆角*/
-::-webkit-scrollbar-track
-{
-    -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0);
-    border-radius: 10px;
-    background-color: #F5F5F5;
-}
+//确认框/询问框
+.alertMask {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
 
-/*定义滑块 内阴影+圆角*/
-::-webkit-scrollbar-thumb
-{
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #555;
-}
+  .alertPopups {
+    width: 80%;
+    background-color: #fff;
+    border: 1px solid #ebeef5;
+    font-size: rem(32);
+    box-shadow: 0 2px rem(12) 0 rgba(0, 0, 0, 0.1);
+    border-radius: rem(4);
+    animation: alertAnimation 0.4s;
 
-input[type="button"], input[type="submit"], input[type="search"], input[type="reset"] {
-    -webkit-appearance: none;
-}
+    .title {
+      padding: rem(26);
+      display: flex;
+      justify-content: space-between;
 
-textarea { -webkit-appearance: none;}
+      p {
+        font-size: rem(32);
+        color: #303133;
+      }
 
-html,body{
-    height: 100%;
-    width: 100%;
-    background-color: #F5F5F5;
-}
+      span {
+        width: rem(30);
+        height: rem(30);
+        cursor: pointer;
+        stroke: #909399;
+        fill: #909399;
 
+        &:hover {
+          stroke: #f00;
+          fill: #f00;
+        }
+      }
+    }
 
-.clear:after{
-    content: '';
-    display: block;
-    clear: both;
-}
+    .alertContent {
+      padding: rem(30) rem(30);
+      color: #606266;
+      font-size: rem(28);
+      display: flex;
+      align-items: center;
 
-.clear{
-    zoom:1;
-}
+      &.inputType {
+        display: block;
 
-.back_img{
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-}
+        input {
+          background-color: #fff;
+          background-image: none;
+          border-radius: rem(8);
+          border: 1px solid #dcdfe6;
+          box-sizing: border-box;
+          color: #606266;
+          display: inline-block;
+          font-size: inherit;
+          height: rem(80);
+          line-height: rem(80);
+          outline: none;
+          padding: 0 rem(30);
+          transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+          width: 100%;
+          margin: rem(30) 0;
 
-.margin{
-    margin: 0 auto;
-}
+          &:focus {
+            outline: none;
+            border-color: #409eff;
+          }
+        }
+      }
 
-.left{
-    float: left;
-}
+      svg {
+        stroke: #e6a23c;
+        fill: #e6a23c;
+        width: rem(48);
+        height: rem(48);
+        flex-shrink: 0;
+        margin-right: rem(20);
+      }
 
-.right{
-    float: right;
-}
+      p {
+        color: #606266;
+        font-size: rem(28);
+      }
+    }
 
-.hide{
-    display: none;
-}
+    .alertBut {
+      padding: rem(10) rem(30) rem(20);
+      display: flex;
+      justify-content: flex-end;
 
-.show{
-    display: block;
-}
+      button {
+        padding: rem(18) rem(30);
+        font-size: rem(24);
+        border-radius: rem(6);
 
-.ellipsis{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+        &:nth-child(1) {
+          background: #fff;
+          border: 1px solid #dcdfe6;
+          color: #606266;
 
-.paddingTop{
-    padding-top: 1.95rem;
-}
+          &:hover {
+            color: #409eff;
+            border-color: #c6e2ff;
+            background-color: #ecf5ff;
+          }
+        }
 
-@keyframes backOpacity{
-   0%   { opacity: 1 }
-   25%  { opacity: .5 }
-   50%  { opacity: 1 }
-   75%  { opacity: .5 }
-   100% { opacity: 1 }
-}
+        &:last-child {
+          background: $mainColor;
+          border: 1px solid $mainColor;
+          color: #fff;
+          margin-left: rem(20);
 
-.animation_opactiy{
-    animation: backOpacity 2s ease-in-out infinite;
+          &:hover {
+            background: #2e8dee;
+            border-color: #2e8dee;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
 }

@@ -11,19 +11,25 @@ import store from '@/config/store'
 import filter from '@/config/filter'
 Vue.use(filter);
 //头部
-import headTop from '@/components/header/head';
+import header from '@/components/header';
+// 尾部
+import footer from '@/components/footer';
 //引用rem配置
 import '@/config/rem'
 
 Vue.config.productionTip = false
-
+//注册全局组件（头部）
+Vue.component('zHeader', header);
+//注册全局组件（尾部）
+Vue.component('zFooter', footer);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: {
+    App
+  }
 })
-//注册全局组件（头部）
-Vue.component('headTop',headTop);
+

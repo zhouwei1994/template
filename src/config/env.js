@@ -7,17 +7,17 @@
  * 
  */
 
-let baseUrl = ''; 
+let baseUrl = '';
 let routerMode = 'history';
 let imgBaseUrl = '';
 if (process.env.NODE_ENV == 'development') {
 
-}else if(process.env.NODE_ENV == 'production'){
-	routerMode = 'hash';
+} else if (process.env.NODE_ENV == 'production') {
+  routerMode = 'hash';
 }
 
 export {
-	baseUrl,
-	routerMode,
-	imgBaseUrl,
+  baseUrl,
+  routerMode,
+  imgBaseUrl,
 }

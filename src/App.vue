@@ -1,53 +1,38 @@
 <template>
   <div id="app">
-    <head-top></head-top>
     <!--页面容器-->
-    <transition :name="'pop-' + (direction === 'forward' ? 'in' : 'out')">
-      <router-view class="router-view"></router-view>
-    </transition>
-    <foot-guide></foot-guide>
+      <transition :name="'pop-' + (direction === 'forward' ? 'in' : 'out')">
+        <router-view class="router-view"></router-view>
+      </transition>
+    <z-footer></z-footer>
     <loading :value="pageLoading || dataLoading"></loading>
   </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex'
-import headTop from '@/components/header/head'
-import footGuide from '@/components/footer/footGuide'
-import loading from '@/components/common/loading'
+import { mapState, mapMutations } from "vuex";
+import loading from "@/components/common/loading";
 export default {
-  components:{
-    headTop,
-    footGuide,
+  components: {
     loading
   },
-  data () {
-    return {
-
-    }
+  data() {
+    return {};
   },
-  computed:{
-    ...mapState([
-      'pageLoading',
-      'dataLoading',
-      'path',
-      'direction'
-    ])
+  computed: {
+    ...mapState(["pageLoading", "dataLoading", "path", "direction"])
   },
-  created(){
+  created() {
     this.setCacheData();
   },
-  methods:{
-    ...mapMutations([
-      'setCacheData'
-    ])
+  methods: {
+    ...mapMutations(["setCacheData"])
   },
-  mounted(){
-
-  }
-}
+  mounted() {}
+};
 </script>
 <style lang="scss">
-@import 'src/style/common';
+@import "src/style/common";
+@import "src/style/icon";
 /**
 * vue-router transition
 */
