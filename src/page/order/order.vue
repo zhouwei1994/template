@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="orderPage">
     <z-header></z-header>
-    首页
+    订单
   </div>
 </template>
 <script>
@@ -24,4 +24,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "src/style/mixin";
+.orderPage {
+  background-color: #00f;
+  height: 100vh;
+}
 </style>

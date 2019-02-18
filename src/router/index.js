@@ -6,11 +6,28 @@ import {
 import store from '@/config/store'
 Vue.use(Router)
 //路由配置
-const routes = [{
-  path: '/',
-  name: 'index',
-  component: resolve => require(['@/page/home/index.vue'], resolve)
-}];
+const routes = [
+  {
+    path: '/',
+    name: 'index',
+    component: resolve => require(['@/page/home/index.vue'], resolve)
+  },
+  {
+    path: '/mall',
+    name: 'mall',
+    component: resolve => require(['@/page/mall/mall.vue'], resolve)
+  },
+  {
+    path: '/order',
+    name: 'order',
+    component: resolve => require(['@/page/order/order.vue'], resolve)
+  },
+  {
+    path: '/my',
+    name: 'my',
+    component: resolve => require(['@/page/my/my.vue'], resolve)
+  },
+];
 let router = new Router({
   //模式
   mode: routerMode,
@@ -35,36 +52,32 @@ let router = new Router({
   "linkExactActiveClass": "active",
 });
 //页面加载时
-const history = window.sessionStorage
-history.clear()
-let historyCount = history.getItem('count') * 1 || 0
-history.setItem('/', 0)
 //页面加载时
+var historyList = new Array("/");
 router.beforeEach(function (to, from, next) {
-  store.commit('setPageLoading', true);
-  store.commit('setPath', to.path)
-  const toIndex = history.getItem(to.path)
-  const fromIndex = history.getItem(from.path)
-
-  if (toIndex) {
-    if (toIndex > fromIndex || !fromIndex || (toIndex === '0' && fromIndex === '0')) {
-      store.commit('setDirection', 'forward')
-    } else {
-      store.commit('setDirection', 'reverse')
+  var pageState = true;
+  var fromIndex = 0;
+ 
+  historyList.forEach((item, index) => {
+    if (item === to.path) {
+      pageState = false;
     }
+    if (item === from.path) {
+      fromIndex = index;
+    }
+  });
+  if (pageState) {
+    store.commit('setDirection', true);
+    store.commit('setKeepAliveList', {name:to.name,state:true});
+    historyList.push(to.path);
   } else {
-    ++historyCount
-    history.setItem('count', historyCount)
-    to.path !== '/' && history.setItem(to.path, historyCount)
-    store.commit('setDirection', 'forward')
+    historyList.splice(fromIndex, 1);
+    store.commit('setDirection', false);
+    store.commit('setKeepAliveList', {name:from.name,state:false});
   }
-
-  if (/\/http/.test(to.path)) {
-    let url = to.path.split('http')[1]
-    window.location.href = `http${url}`
-  } else {
-    next();
-  }
+  //页面加载前
+  store.commit('setPageLoading', true);
+  next();
 });
 //页面销毁时
 router.afterEach(function (to) {

@@ -5,11 +5,11 @@
         <i></i>
         <span>首页</span>
       </router-link>
-      <router-link tag="div" to="/shangping">
+      <router-link tag="div" to="/mall">
         <i></i>
         <span>商城</span>
       </router-link>
-      <router-link tag="div" to="/news">
+      <router-link tag="div" to="/order">
         <i></i>
         <span>消息</span>
       </router-link>
