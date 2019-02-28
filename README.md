@@ -1,20 +1,20 @@
 # website
 
-> A Vue.js project
+> 一个Vue.js项目
 
 ## Build Setup
 
 ``` bash
-# install dependencies
-npm install  //安装node运行环境
+# 安装项目依赖项
+npm install
 
-# serve with hot reload at localhost:8080
-npm run dev  //启动开发环境服务器
+# 启动服务器，在localhost：8080进行加载
+npm run dev
 
-# build for production with minification
-npm run build  //打包生成命令
+# 打包生产环境
+npm run build
 
-# build for production and view the bundle analyzer report
+# 构建用于生产并查看捆绑分析器报告
 npm run build --report
 ```
 
@@ -52,5 +52,5 @@ npm run build --report
 ├── favicon.ico                                 // 图标
 ├── index.html                                  // 入口html文件
 ├── package.json                                // npm入口文件
-├── dev.bat                                     // 项目启动文件
+└── dev.bat                                     // 项目启动文件
 ```
