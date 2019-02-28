@@ -15,7 +15,7 @@ import header from '@/components/header';
 // 尾部
 import footer from '@/components/footer';
 //引用rem配置
-import '@/config/rem'
+import '@/utils/rem'
 
 Vue.config.productionTip = false
 //注册全局组件（头部）
@@ -32,4 +32,3 @@ new Vue({
     App
   }
 })
-

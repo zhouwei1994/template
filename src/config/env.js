@@ -11,7 +11,7 @@ let baseUrl = '';
 let routerMode = 'history';
 let imgBaseUrl = '';
 if (process.env.NODE_ENV == 'development') {
-
+  baseUrl = 'https://www.zhenwang.so/needle/api/';
 } else if (process.env.NODE_ENV == 'production') {
   routerMode = 'hash';
 }

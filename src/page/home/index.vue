@@ -9,12 +9,15 @@
       <!-- 如果需要分页器 -->
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
-    <img src="https://mmbiz.qpic.cn/mmbiz_jpg/zEqq1Ww9bticF0akmjlprTv6QQ7qnKuib8N6oROZVtBgkLb7q2s9rpmia7ptUnv1G8p1zK6wYqFIIj04dbictiaFNfQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="">
+    <input type="text">
+    <router-link to="/list">跳转子页面</router-link>
+    <button @click="onPrompt">弹出</button>
   </div>
 </template>
 <script>
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 export default {
+  name: "index",
   components: {
     swiper,
     swiperSlide
@@ -37,10 +40,12 @@ export default {
     };
   },
   watch: {},
-  methods: {},
-  mounted() {
-    
-  }
+  methods: {
+    onPrompt() {
+      this.prompt("你好");
+    }
+  },
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

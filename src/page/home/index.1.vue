@@ -1,25 +1,17 @@
 <template>
   <div>
-    <z-header></z-header>
-    首页
+    <z-header>首页</z-header>首页
   </div>
 </template>
 <script>
 export default {
-  components:{
-    
-  },
+  name: "index1",
+  components: {},
   data() {
-    return {
-      
-    }
+    return {};
   },
-  methods: {
-    
-  },
-  created() {
-    
-  },
+  methods: {},
+  created() {}
 };
 </script>
 <style lang="scss" scoped>

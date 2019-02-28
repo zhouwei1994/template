@@ -5,16 +5,15 @@ import {
   getStore,
   removeStore,
   modifyJson
-} from '@/config/utils'
+}
+from '@/utils/utils'
 Vue.use(Vuex)
 //全局变量
 const state = {
-  //页面加载时
-  pageLoading: false,
-  //数据加载时
-  dataLoading: false,
+  //加载时动画
+  loading: 0,
   //跳转页面动画模式
-  direction: 'forward',
+  direction: 'fade',
   //需求缓存的页面
   keepAliveList: [],
   //用户信息
@@ -40,13 +39,13 @@ const mutations = { //触发状态
       }
     }
   },
-  //页面加载时
-  setPageLoading(state, payload) {
-    state.pageLoading = payload;
-  },
-  //数据加载时
-  setDataLoading(state, payload) {
-    state.dataLoading = payload;
+  //加载时动画
+  setLoading(state, payload) {
+    if (payload) {
+      state.loading = state.loading + 1;
+    } else {
+      state.loading = state.loading - 1;
+    }
   },
   //跳转页面动画模式
   setDirection(state, payload) {
@@ -55,7 +54,7 @@ const mutations = { //触发状态
   //需求缓存的页面
   setKeepAliveList(state, payload) {
     if (payload.state) {
-      state.keepAliveList.push(payload.name);
+      state.keepAliveList.includes(payload.name) || state.keepAliveList.push(payload.name);
     } else {
       state.keepAliveList.forEach((item, index) => {
         item == payload.name && state.keepAliveList.splice(index, 1);

@@ -1,25 +1,16 @@
 <template>
   <div class="orderPage">
-    <z-header></z-header>
-    订单
+    <z-header>订单</z-header>订单
   </div>
 </template>
 <script>
 export default {
-  components:{
-    
-  },
+  components: {},
   data() {
-    return {
-      
-    }
+    return {};
   },
-  methods: {
-    
-  },
-  created() {
-    
-  },
+  methods: {},
+  created() {}
 };
 </script>
 <style lang="scss" scoped>

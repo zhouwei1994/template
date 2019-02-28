@@ -1,12 +1,13 @@
 import store from '@/config/store';
-import $ajax from '@/config/fetch';
+import $ajax from '@/config/ajax';
 import {
   prompt,
   $alert,
   clickDateDiff,
   formatTime,
   loadMore
-} from '@/config/utils';
+}
+from '@/utils/utils';
 export default {
   install(Vue) {
     /**
@@ -46,20 +47,22 @@ export default {
      * });
      */
     Vue.prototype.$alert = $alert;
+
     /**
      * 数据请求
-     * 用法：
-     * this.$ajax("/a/b/c",{
-     *   a:1,
-     *   b:2
-     * },{
-     *   type:"GET", //默认GET 支持 GET，POST，FORM 表单提交，JSONP 跨域
-     *   ownUrl:false, //默认false  等于true自定义请求路径，全局url无效
-     *   prompt:true, //默认true  等于false不显示错误提示
-     *   contentType:"application/json", //默认application/json  自定义请求头
-     *   load:true,  //默认true 等于false不显示加载的转菊花
-     * }).then(res => {
-     *    console.log(res);
+     * $http.post(url, data, {
+     *    isPrompt: true, //（默认 true 说明：本接口抛出的错误是否提示）
+     *    load: true, //（默认 true 说明：本接口是否提示加载动画）
+     *    headers: { //默认 无 说明：请求头
+     *      'Content-Type': 'application/json'
+     *    },
+     *    isFactory: true //（默认 true 说明：本接口是否调用公共的数据处理方法，设置false后isPrompt参数奖失去作用）
+     * }).then(function (response) {
+     *    //请求成功
+     *    console.log(response);
+     * }).catch(function (error) {
+     *    //请求失败
+     *    console.log(error);
      * });
      */
     Vue.prototype.$ajax = $ajax;

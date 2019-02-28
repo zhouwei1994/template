@@ -1,31 +1,63 @@
 <template>
   <div class="mallPage">
-    <z-header></z-header>
-    商城
+    <z-header>商城</z-header>商城
+    <input type="text">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </div>
 </template>
 <script>
 export default {
-  components:{
-    
-  },
+  name: "mall",
+  components: {},
   data() {
-    return {
-      
-    }
+    return {};
   },
-  methods: {
-    
-  },
-  created() {
-    
-  },
+  methods: {},
+  created() {}
 };
 </script>
 <style lang="scss" scoped>
 @import "src/style/mixin";
 .mallPage {
-  background-color: #f00;
-  height: 100vh;
 }
 </style>

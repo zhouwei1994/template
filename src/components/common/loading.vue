@@ -1,5 +1,5 @@
 <template>
-  <div class="loading_box" v-show="show">
+  <div class="loading_box" v-show="value > 0">
     <div class="loading_mask"></div>
     <div class="loading_toast">
       <spinner type="android"></spinner>
@@ -15,26 +15,10 @@ export default {
   },
   props: {
     value: {
-      type: Boolean,
-      default: false
+      type: Number,
+      default: 0
     },
     text: String
-  },
-  created() {
-    this.show = this.value;
-  },
-  data() {
-    return {
-      show: false
-    };
-  },
-  watch: {
-    value(val) {
-      this.show = val;
-    },
-    show(val) {
-      this.$emit("input", val);
-    }
   }
 };
 </script>

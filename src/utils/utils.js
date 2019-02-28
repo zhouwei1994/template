@@ -88,6 +88,7 @@ export const prompt = function (text, time) {
       document.body.removeChild(htm);
     }, 600)
   }
+  router.push("/my");
 }
 /**
  * 确认框/询问框

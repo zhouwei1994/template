@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <!--页面容器-->
-    <transition :name="'pop-' + (direction ? 'in' : 'out')">
+    <transition :name="'pop-' + direction">
       <keep-alive :include="keepList">
         <router-view class="router-view"/>
       </keep-alive>
     </transition>
     <z-footer></z-footer>
-    <loading :value="pageLoading || dataLoading"></loading>
+    <loading v-model="loading"></loading>
   </div>
 </template>
 <script>
@@ -23,7 +23,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["pageLoading", "dataLoading", "direction", "keepAliveList"])
+    ...mapState(["loading", "direction", "keepAliveList"])
   },
   watch: {
     keepAliveList(val) {
@@ -31,6 +31,8 @@ export default {
     }
   },
   created() {
+    console.log(this.keepAliveList);
+    this.keepList = this.keepAliveList.join(",");
     this.setCacheData();
   },
   methods: {
