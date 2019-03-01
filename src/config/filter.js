@@ -5,7 +5,8 @@ import {
   $alert,
   clickDateDiff,
   formatTime,
-  loadMore
+  loadMore,
+  img
 }
 from '@/utils/utils';
 export default {
@@ -14,6 +15,10 @@ export default {
      * 加载更多
      */
     Vue.mixin(loadMore);
+    /**
+     * 图片居中剪切
+     */
+    Vue.mixin(img);
     /**
      * 时间戳转换为想要的时间格式
      */

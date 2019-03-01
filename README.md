@@ -5,6 +5,12 @@
 ## Build Setup
 
 ``` bash
+# 用Git从Github上拉取项目
+git clone https://github.com/zhouwei1994/template
+
+# 进入template
+cd template
+
 # 安装项目依赖项
 npm install
 
@@ -48,6 +54,7 @@ npm run build --report
 │   │   ├── rem.js                              // rem布局文件
 │   │   ├── request.js                          // 数据请求方法
 │   │   └── utils.js                            // 常用小工具
+│   ├── App.vue                                 // 项目主界面
 │   ├── main.js                                 // 程序入口文件，加载各种公共组件
 ├── favicon.ico                                 // 图标
 ├── index.html                                  // 入口html文件
