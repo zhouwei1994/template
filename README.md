@@ -2,7 +2,7 @@
 
 > 一个Vue.js项目
 
-## Build Setup
+## 项目安装
 
 ``` bash
 # 用Git从Github上拉取项目
