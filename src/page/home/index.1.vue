@@ -1,6 +1,7 @@
 <template>
   <div>
-    <z-header>首页</z-header>首页
+    <z-header>子页</z-header>子页
+    <router-link to="/">跳转首页</router-link>
   </div>
 </template>
 <script>

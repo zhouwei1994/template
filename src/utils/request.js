@@ -53,7 +53,7 @@ export default class request {
   // 获取默认信息
   getDefault(url, options) {
     //判断url是不是链接
-    var urlType = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+).)+([A-Za-z0-9-~\/])+$/.test(url);
+    var urlType = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+).)+([A-Za-z0-9-~/])+$/.test(url);
     return {
       //请求地址
       httpUrl: urlType ? url : this.baseUrl + url,
@@ -72,8 +72,6 @@ export default class request {
     let requestObj;
     if (window.XMLHttpRequest) {
       requestObj = new XMLHttpRequest();
-    } else {
-      requestObj = new ActiveXObject;
     }
     //请求前回调
     this.requestStart && this.requestStart(options);

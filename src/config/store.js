@@ -1,13 +1,11 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 import {
   setStore,
-  getStore,
-  removeStore,
   modifyJson
 }
-from '@/utils/utils'
-Vue.use(Vuex)
+from '@/utils/utils';
+Vue.use(Vuex);
 //全局变量
 const state = {
   //加载时动画
@@ -25,7 +23,7 @@ const cacheNameList = ["userInfo"];
 const mutations = { //触发状态
   //取出缓存数据
   setCacheData(state) {
-    for (var item of cacheNameList) {
+    for (var name of cacheNameList) {
       var data = sessionStorage.getItem(name) || localStorage.getItem(name);
       if (data) {
         var dataObj = JSON.parse(data);
@@ -53,12 +51,8 @@ const mutations = { //触发状态
   },
   //需求缓存的页面
   setKeepAliveList(state, payload) {
-    if (payload.state) {
-      state.keepAliveList.includes(payload.name) || state.keepAliveList.push(payload.name);
-    } else {
-      state.keepAliveList.forEach((item, index) => {
-        item == payload.name && state.keepAliveList.splice(index, 1);
-      });
+    if (state.keepAliveList.includes(payload.name)) {
+      state.keepAliveList.push(payload.name);
     }
   },
   //储存用户信息

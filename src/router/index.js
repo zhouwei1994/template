@@ -7,44 +7,48 @@ import store from '@/config/store'
 Vue.use(Router)
 //路由配置
 const routes = [{
-    path: '/',
-    name: 'index',
-    meta: {
-      //缓存当前页面并取消动画跳转
-      keepAlive: true
-    },
-    component: resolve => require(['@/page/home/index.vue'], resolve)
+  path: '/',
+  name: 'index',
+  meta: {
+    //缓存当前页面并取消动画跳转
+    keepAlive: true
   },
-  {
-    path: '/mall',
-    name: 'mall',
-    meta: {
-      keepAlive: true
-    },
-    component: resolve => require(['@/page/mall/mall.vue'], resolve)
+  component: resolve => require(['@/page/home/index.vue'], resolve)
+},
+{
+  path: '/mall',
+  name: 'mall',
+  meta: {
+    keepAlive: true
   },
-  {
-    path: '/order',
-    name: 'order',
-    meta: {
-      keepAlive: true
-    },
-    component: resolve => require(['@/page/order/order.vue'], resolve)
+  component: resolve => require(['@/page/mall/mall.vue'], resolve)
+},
+{
+  path: '/order',
+  name: 'order',
+  meta: {
+    keepAlive: true
   },
-  {
-    path: '/my',
-    name: 'my',
-    meta: {
-      keepAlive: true
-    },
-    component: resolve => require(['@/page/my/my.vue'], resolve)
+  component: resolve => require(['@/page/order/order.vue'], resolve)
+},
+{
+  path: '/my',
+  name: 'my',
+  meta: {
+    keepAlive: true
   },
-  {
-    path: '/list',
-    name: 'list',
-    component: resolve => require(['@/page/home/list.vue'], resolve)
-  },
-];
+  component: resolve => require(['@/page/my/my.vue'], resolve)
+},
+{
+  path: '/list',
+  name: 'list',
+  component: resolve => require(['@/page/home/list.vue'], resolve)
+},
+{
+  path: '/index1',
+  name: 'index1',
+  component: resolve => require(['@/page/home/index.1.vue'], resolve)
+}, ];
 let router = new Router({
   //模式
   mode: routerMode,
@@ -53,12 +57,12 @@ let router = new Router({
   //页面滚动
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition
+      return savedPosition;
     } else {
       if (from.meta.keepAlive) {
         from.meta.savedPosition = document.body.scrollTop || document.documentElement.scrollTop;
       }
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           resolve({
             x: 0,
@@ -73,28 +77,31 @@ let router = new Router({
   "linkExactActiveClass": "active",
 });
 //页面加载时
+let historyPage = new Array;
 router.beforeEach(function (to, from, next) {
-  //判断是否是缓存的页面
-  if (to.meta.keepAlive) {
-    store.commit('setDirection', "fade");
-    store.commit('setKeepAliveList', {
-      name: to.name,
-      state: true
-    });
-  } else {
-    //缓存列表有说明是后退-删除缓存列表里的当前页面名称
-    if (store.state.keepAliveList.includes(to.name)) {
+  //缓存列表有说明是后退-删除缓存列表里的当前页面名称
+  if (historyPage.includes(to.name)) {
+    //判断是否是缓存的页面
+    if (to.meta.keepAlive) {
+      store.commit('setDirection', "fade");
+      store.commit('setKeepAliveList', to.name);
+      historyPage = new Array;
+    } else {
       store.commit('setDirection', "out");
-      store.commit('setKeepAliveList', {
-        name: from.name,
-        state: false
-      });
+      var index = historyPage.indexOf(from.name);
+      if (index >= 0) {
+        historyPage.splice(index, 1);
+      }
+    }
+  } else {
+    //判断是否是缓存的页面
+    if (to.meta.keepAlive) {
+      store.commit('setDirection', "fade");
+      store.commit('setKeepAliveList', to.name);
+      historyPage = new Array;
     } else {
       store.commit('setDirection', "in");
-      store.commit('setKeepAliveList', {
-        name: to.name,
-        state: true
-      });
+      historyPage.push(to.name);
     }
   }
   //页面加载前
@@ -102,7 +109,7 @@ router.beforeEach(function (to, from, next) {
   next();
 });
 //页面销毁时
-router.afterEach(function (to) {
+router.afterEach(function () {
   store.commit('setLoading', false);
 });
 export default router;

@@ -1,4 +1,3 @@
-import store from '@/config/store';
 import $ajax from '@/config/ajax';
 import {
   prompt,
@@ -29,7 +28,7 @@ export default {
      * 时间转换为XX前
      */
     Vue.filter("getDateDiff", function (value) {
-      return Vue.prototype.clickDateDiff(value);
+      return clickDateDiff(value);
     });
     /**
      * 金额保留两位

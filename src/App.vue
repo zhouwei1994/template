@@ -6,16 +6,19 @@
         <router-view class="router-view"/>
       </keep-alive>
     </transition>
-    <z-footer></z-footer>
+    <z-navigation></z-navigation>
     <loading v-model="loading"></loading>
   </div>
 </template>
 <script>
 import { mapState, mapMutations } from "vuex";
 import loading from "@/components/common/loading";
+// 尾部
+import zNavigation from "@/components/navigation";
 export default {
   components: {
-    loading
+    loading,
+    zNavigation
   },
   data() {
     return {
@@ -31,7 +34,6 @@ export default {
     }
   },
   created() {
-    console.log(this.keepAliveList);
     this.keepList = this.keepAliveList.join(",");
     this.setCacheData();
   },
@@ -42,6 +44,7 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "src/style/init";
 @import "src/style/common";
 @import "src/style/icon";
 /**

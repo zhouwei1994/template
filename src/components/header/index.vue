@@ -3,7 +3,9 @@
     <div class="header_view">
       <div class="backIcon" @click="onBack">
         <svg viewBox="0 0 1024 1024" v-if="!back">
-          <path d="M256 512.064c0 8.192 3.136 16.384 9.344 22.656l384 351.936a32 32 0 0 0 45.248-45.248L333.248 512.064l361.344-329.472a32 32 0 0 0-45.248-45.248l-384 352.064A32.128 32.128 0 0 0 256 512.064z"></path>
+          <path
+            d="M256 512.064c0 8.192 3.136 16.384 9.344 22.656l384 351.936a32 32 0 0 0 45.248-45.248L333.248 512.064l361.344-329.472a32 32 0 0 0-45.248-45.248l-384 352.064A32.128 32.128 0 0 0 256 512.064z"
+          ></path>
         </svg>
       </div>
       <div class="title">
@@ -16,7 +18,7 @@
   </header>
 </template>
 <script>
-import { mapState, mapMutations } from "vuex";
+// import { mapState, mapMutations } from "vuex";
 export default {
   data() {
     return {};

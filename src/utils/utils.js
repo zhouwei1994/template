@@ -2,7 +2,7 @@
  * 存储localStorage
  */
 export const setStore = (name, content) => {
-  if (!name) return;
+  if (!name) { return; }
   if (typeof content !== 'string') {
     content = JSON.stringify(content);
   }
@@ -13,7 +13,7 @@ export const setStore = (name, content) => {
  * 获取localStorage
  */
 export const getStore = name => {
-  if (!name) return;
+  if (!name) { return; }
   return window.sessionStorage.getItem(name);
 }
 
@@ -21,14 +21,14 @@ export const getStore = name => {
  * 删除localStorage
  */
 export const removeStore = name => {
-  if (!name) return;
+  if (!name) { return; }
   window.sessionStorage.removeItem(name);
 }
 /**
  * json数据去重合并
  */
 export const modifyJson = (json, oldJson) => {
-  if (!json && !oldJson) return;
+  if (!json && !oldJson) { return; }
   if (typeof json !== "object") {
     json = JSON.parse(json);
   }
@@ -60,18 +60,18 @@ export const getStyle = (element, attr, NumberMode = 'int') => {
     target = document.defaultView.getComputedStyle(element, null)[attr];
   }
   //在获取 opactiy 时需要获取小数 parseFloat
-  return NumberMode == 'float' ? parseFloat(target) : parseInt(target);
+  return NumberMode === 'float' ? parseFloat(target) : parseInt(target);
 }
 /**
  * 消息提示
  */
 var repeat = '';
 export const prompt = function (text, time) {
-  if (text == repeat) {
+  if (text === repeat) {
     return false;
   }
   repeat = text;
-  var time = time || 3000;
+  time = time || 3000;
   var htm = document.createElement('div');
   htm.innerHTML = text;
   htm.setAttribute('class', "prompt");
@@ -88,7 +88,6 @@ export const prompt = function (text, time) {
       document.body.removeChild(htm);
     }, 600)
   }
-  router.push("/my");
 }
 /**
  * 确认框/询问框
@@ -187,7 +186,6 @@ export const clickDateDiff = function (value) {
   var minute = 1000 * 60;
   var hour = minute * 60;
   var day = hour * 24;
-  var halfamonth = day * 15;
   var month = day * 30;
   var now = new Date().getTime();
   var diffValue = parseInt(now) - parseInt(value);
@@ -331,7 +329,6 @@ export const loadMore = {
           startY = event.changedTouches[0].pageY;
           height = heightEl.clientHeight;
           if (scrollType == 2) {
-            height = height;
             paddingBottom = getStyle(el, 'paddingBottom');
             marginBottom = getStyle(el, 'marginBottom');
           }

@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer v-if="navShow">
     <div class="footer_view">
       <router-link tag="div" to="/">
         <i></i>
@@ -21,16 +21,18 @@
   </footer>
 </template>
 <script>
-import { mapState } from "vuex";
 export default {
   data() {
     return {};
   },
   created() {},
-  mounted() {},
   computed: {
-    ...mapState(["geohash"])
+    navShow() {
+      var path = this.$route.path;
+      return path === "/" || /mall|order|my/.test(path);
+    }
   },
+  mounted() {},
   methods: {
     gotoAddress(path) {
       this.$router.push(path);

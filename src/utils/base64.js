@@ -5,7 +5,7 @@ function Base64() {
 
   // public method for encoding
   this.encode = function (input) {
-    var output = "";
+    var output;
     var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
     var i = 0;
     input = _utf8_encode(input);
@@ -31,7 +31,7 @@ function Base64() {
 
   // public method for decoding
   this.decode = function (input) {
-    var output = "";
+    var output;
     var chr1, chr2, chr3;
     var enc1, enc2, enc3, enc4;
     var i = 0;
@@ -45,10 +45,10 @@ function Base64() {
       chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
       chr3 = ((enc3 & 3) << 6) | enc4;
       output = output + String.fromCharCode(chr1);
-      if (enc3 != 64) {
+      if (enc3 !== 64) {
         output = output + String.fromCharCode(chr2);
       }
-      if (enc4 != 64) {
+      if (enc4 !== 64) {
         output = output + String.fromCharCode(chr3);
       }
     }
@@ -58,8 +58,8 @@ function Base64() {
 
   // private method for UTF-8 encoding
   function _utf8_encode(string) {
-    string = string.replace(/\r\n/g, "\n");
-    var utftext = "";
+    string = string.replace(/\r\n/g, '\n');
+    var utftext;
     for (var n = 0; n < string.length; n++) {
       var c = string.charCodeAt(n);
       if (c < 128) {
@@ -79,9 +79,11 @@ function Base64() {
 
   // private method for UTF-8 decoding
   function _utf8_decode(utftext) {
-    var string = "";
+    var c = 0;
+    var c2 = 0;
+    var c3;
+    var string;
     var i = 0;
-    var c = c1 = c2 = 0;
     while (i < utftext.length) {
       c = utftext.charCodeAt(i);
       if (c < 128) {
