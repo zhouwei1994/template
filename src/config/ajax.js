@@ -1,12 +1,7 @@
-import store from '@/config/store'
+import store from '@/config/store';
 import router from '@/router/index';
-import {
-  baseUrl
-} from '@/config/env'
-import {
-  prompt,
-  $alert,
-} from '@/utils/utils'
+import { baseUrl } from '@/config/constPool';
+import { prompt, $alert } from '@/utils/utils';
 //引入请求方法
 import request from "@/utils/request";
 //创建request对象

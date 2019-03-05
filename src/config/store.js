@@ -1,10 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import {
-  setStore,
-  modifyJson
-}
-from '@/utils/utils';
+import { setStore, modifyJson } from '@/utils/utils';
 Vue.use(Vuex);
 //全局变量
 const state = {

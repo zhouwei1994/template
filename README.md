@@ -40,7 +40,7 @@ npm run lint
 │   │   ├── navigation                          // 底部导航组件
 │   │   └── header                              // 头部公共组件
 │   ├── config                                  // 基本配置
-│   │   ├── env.js                              // 环境切换配置
+│   │   ├── constPool.js                        // 环境切换配置
 │   │   ├── ajax.js                             // 获取数据
 │   │   ├── filter.js                           // 常用vue过滤器
 │   │   └── store.js                            // vuex配置
@@ -51,6 +51,7 @@ npm run lint
 │   ├── style
 │   │   ├── common.scss                         // 公共样式文件
 │   │   ├── mixin.scss                          // 样式配置文件
+│   │   ├── init.scss                           // 样式初始化文件
 │   │   └── icon.scss                           // 字体图标文件
 │   ├── App.vue                                 // 页面入口文件
 │   ├── utils                                   // 常用工具
