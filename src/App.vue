@@ -53,7 +53,6 @@ export default {
 
 .router-view {
   width: 100%;
-  animation-duration: 0.3s;
   animation-fill-mode: both;
   backface-visibility: hidden;
 }
@@ -69,22 +68,28 @@ export default {
 }
 
 .pop-out-enter-active {
+  animation-duration: 0.3s;
   animation-name: popInLeft;
 }
 
 .pop-out-leave-active {
+  animation-duration: 0.3s;
   animation-name: popOutRight;
 }
 
 .pop-in-enter-active {
   perspective: 1000;
+  animation-duration: 0.3s;
   animation-name: popInRight;
 }
 
 .pop-in-leave-active {
+  animation-duration: 0.3s;
   animation-name: popOutLeft;
 }
-
+.pop-fade-leave-active {
+  display: none;
+}
 @keyframes popInLeft {
   from {
     transform: translate3d(-100%, 0, 0);
