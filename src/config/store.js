@@ -12,7 +12,7 @@ const state = {
   keepAliveList: [],
   //用户信息
   userInfo: {},
-}
+};
 //缓存浏览器的数据名称
 const cacheNameList = ["userInfo"];
 //数据处理

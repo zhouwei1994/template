@@ -23,7 +23,7 @@ http.requestStart = function (options) {
     //打开加载动画
     store.commit('setLoading', true);
   }
-}
+};
 //请求结束
 http.requestEnd = function (options, resolve) {
   console.log(resolve.responseURL, '\n', resolve.response);
