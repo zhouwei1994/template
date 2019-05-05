@@ -1,6 +1,6 @@
 <template>
   <div class="orderPage">
-    <z-header>订单</z-header>订单
+    <z-header back>订单</z-header>
   </div>
 </template>
 <script>
@@ -14,7 +14,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "src/style/mixin";
 .orderPage {
   background-color: #00f;
   height: 100vh;

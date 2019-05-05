@@ -1,6 +1,7 @@
 <template>
   <div>
-    <z-header>列表</z-header>列表
+    <z-header>列表</z-header>
+    <input type="text">
     <router-link to="/index1">跳转子页面</router-link>
   </div>
 </template>

@@ -1,22 +1,20 @@
 import store from '@/config/store';
 import router from '@/router/index';
-import { baseUrl } from '@/config/constPool';
+import base from '@/config/base';
 import { prompt, $alert } from '@/utils/utils';
 //引入请求方法
 import request from "@/utils/request";
 //创建request对象
 var http = new request({
   //定义请求地址公共部分(必填)
-  baseUrl: baseUrl,
-  //设置请求超时时间，单位：毫秒，低于2000毫秒是默认系统超时时间（默认为0 ）
-  timeout: 0,
+  baseUrl: base.baseUrl,
   //设置请求头（默认为{}）
   headers: {
     'Content-Type': 'application/json'
   }
 });
 //请求开始回调
-http.requestStart = function (options) {
+http.requestStart = function (options, data) {
   console.log("请求开始");
   //判断当前接口是否需要加载动画
   if (options.load) {
@@ -46,7 +44,6 @@ http.dataFactory = function (options, resolve) {
     callback.success = true;
     callback.result = resolve.data;
   } else if (parseInt(resolve.code) == 1000) { //code == 1000 是用户未登录
-    //这个是React Native的原生方法
     $alert("您还未登录，请先登录", {
       type: 1,
       confirmText: "去登录",
@@ -62,11 +59,6 @@ http.dataFactory = function (options, resolve) {
     }
     callback.result = resolve.info;
   }
-  //本回调函数必须有return，返回数据结构为：
-  // {
-  //    success: （true 返回到正确的位置 | false 返回到错误的位置）
-  //    result:（返回数据）
-  // }
   return callback;
 }
 //返回请求对象

@@ -4,9 +4,9 @@ $mainColor: #006cdb;
 //辅色
 $viceColor:#999;
 
-//rem整数换算
-@function rem ($num) {
-  @return $num/100 * 2.8rem;
+//vw整数换算
+@function vw($px) {
+    @return ($px / 750) * 100vw;
 }
 
 // 背景图片地址和大小

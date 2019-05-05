@@ -47,7 +47,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../../style/mixin";
-$headHeight: rem(100);
+$headHeight: vw(100);
 header {
   height: $headHeight;
   .header_view {
@@ -70,15 +70,15 @@ header {
       svg {
         stroke: #333;
         fill: #333;
-        height: rem(50);
-        width: rem(50);
+        height: vw(50);
+        width: vw(50);
       }
     }
     .title {
       height: $headHeight;
       line-height: $headHeight;
       color: #333;
-      font-size: rem(34);
+      font-size: vw(34);
     }
     .features {
       height: $headHeight;

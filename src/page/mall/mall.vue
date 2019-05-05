@@ -1,6 +1,6 @@
 <template>
   <div class="mallPage">
-    <z-header>商城</z-header>商城
+    <z-header back>商城</z-header>
     <input type="text">
     <br>
     <br>
@@ -57,7 +57,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "src/style/mixin";
 .mallPage {
 }
 </style>

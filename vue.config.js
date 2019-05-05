@@ -39,7 +39,6 @@ module.exports = {
     https: false,
     //服务器端口号
     port: 8000,
-
     hotOnly: false,
     //配置自动启动浏览器
     open: true,

@@ -5,7 +5,15 @@
       <p>时间选择</p>
       <span @click="calendarShow = false">×</span>
     </div>
-    <z-calendar :range="calendar.range" :zero="calendar.zero" :begin="calendar.begin || []" :end="calendar.end || []" :lunar="calendar.lunar" :value="calendar.value"  @select="calendarChange"></z-calendar>
+    <z-calendar
+      :range="calendar.range"
+      :zero="calendar.zero"
+      :begin="calendar.begin || []"
+      :end="calendar.end || []"
+      :lunar="calendar.lunar"
+      :value="calendar.value"
+      @select="calendarChange"
+    ></z-calendar>
   </popup>
 </template>
 <script>
@@ -49,8 +57,7 @@ export default {
       this.calendar.select(val);
     }
   },
-  mounted() {
-  }
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -61,21 +68,21 @@ export default {
 .calendarTitle {
   display: flex;
   justify-content: space-between;
-  height: rem(88);
-  line-height: rem(88);
+  height: vw(88);
+  line-height: vw(88);
   border-bottom: 1px solid #ebebeb;
   width: 100vw;
 }
 .calendarTitle p {
-  font-size: rem(32);
+  font-size: vw(32);
 }
 .calendarTitle span {
-  width: rem(80);
+  width: vw(80);
   flex-shrink: 0;
   text-align: center;
 }
 .calendarTitle span:last-child {
-  font-size: rem(52);
+  font-size: vw(52);
   color: #999;
 }
 </style>

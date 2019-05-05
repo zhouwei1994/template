@@ -38,20 +38,20 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: rem(220);
-  height: rem(220);
+  width: vw(220);
+  height: vw(220);
   transform: translateX(-50%) translateY(-50%);
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.8);
   text-align: center;
-  padding-top: rem(50);
+  padding-top: vw(50);
   box-sizing: border-box;
   font-size: 0.8rem;
   z-index: 5001;
 }
 .loading_box .loading_toast .loading_content {
   color: #fff;
-  margin-top: rem(30);
-  font-size: rem(30);
+  margin-top: vw(30);
+  font-size: vw(30);
 }
 </style>

@@ -5,7 +5,7 @@
       <p>所在地区</p>
       <span @click="onConfirm">确定</span>
     </div>
-  	<z-address :data="addressVal" @change="addressChange" :length="length" :force="false"></z-address>
+    <z-address :data="addressVal" @change="addressChange" :length="length" :force="false"></z-address>
   </popup>
 </template>
 <script>
@@ -29,7 +29,7 @@ export default {
     },
     length: {
       type: Number,
-      default:2
+      default: 2
     }
   },
   created() {
@@ -68,7 +68,7 @@ export default {
       if (parseInt(this.length) <= this.addressVal.length) {
         this.currentValue = false;
         this.$emit("change", this.addressVal);
-      }else{
+      } else {
         this.prompt("请选择");
       }
     }
@@ -81,21 +81,21 @@ export default {
 .addresTitle {
   display: flex;
   justify-content: space-between;
-  height: rem(88);
-  line-height: rem(88);
+  height: vw(88);
+  line-height: vw(88);
   border-bottom: 1px solid #ebebeb;
-  padding: 0 rem(20);
+  padding: 0 vw(20);
 }
 .addresTitle p {
-  font-size: rem(32);
+  font-size: vw(32);
 }
 .addresTitle span {
-  width: rem(80);
+  width: vw(80);
   flex-shrink: 0;
   text-align: center;
 }
 .addresTitle span {
-  font-size: rem(28);
+  font-size: vw(28);
   color: #999;
 }
 .addresTitle span:last-child {

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import { routerMode } from '@/config/constPool';
+import base from '@/config/base';
 import store from '@/config/store';
 Vue.use(Router);
 //路由配置
@@ -46,10 +46,10 @@ const routes = [{
   path: '/index1',
   name: 'index1',
   component: resolve => require(['@/page/home/index.1.vue'], resolve)
-}, ];
+},];
 let router = new Router({
   //模式
-  mode: routerMode,
+  mode: base.routerMode,
   //代码检查
   // strict: process.env.NODE_ENV !== 'production',
   //页面滚动
@@ -76,29 +76,33 @@ let router = new Router({
 });
 //页面加载时
 let historyPage = new Array;
+let keepAliveList = new Array;
 router.beforeEach(function (to, from, next) {
   //缓存列表有说明是后退-删除缓存列表里的当前页面名称
   if (historyPage.includes(to.name)) {
     //判断是否是缓存的页面
     if (to.meta.keepAlive) {
       store.commit('setDirection', "fade");
-      store.commit('setKeepAliveList', to.name);
-      historyPage = new Array;
+      store.commit('setKeepAliveList', { type: "init", list: keepAliveList });
+      historyPage = [].concat(keepAliveList);
     } else {
       store.commit('setDirection', "out");
       var index = historyPage.indexOf(from.name);
       if (index >= 0) {
+        store.commit('setKeepAliveList', { type: "delete", name: from.name });
         historyPage.splice(index, 1);
       }
     }
   } else {
     //判断是否是缓存的页面
     if (to.meta.keepAlive) {
+      keepAliveList.push(to.name);
+      historyPage.push(to.name);
       store.commit('setDirection', "fade");
-      store.commit('setKeepAliveList', to.name);
-      historyPage = new Array;
+      store.commit('setKeepAliveList', { type: "add", name: to.name });
     } else {
       store.commit('setDirection', "in");
+      store.commit('setKeepAliveList', { type: "add", name: to.name });
       historyPage.push(to.name);
     }
   }

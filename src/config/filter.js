@@ -1,4 +1,5 @@
 import $ajax from '@/config/ajax';
+import base from '@/config/base';
 import {
   prompt,
   $alert,
@@ -7,7 +8,7 @@ import {
   loadMore,
   img
 }
-from '@/utils/utils';
+  from '@/utils/utils';
 export default {
   install(Vue) {
     /**
@@ -70,5 +71,9 @@ export default {
      * });
      */
     Vue.prototype.$ajax = $ajax;
+    /**
+     * base配置数据
+     */
+    Vue.prototype.base = base;
   }
 }

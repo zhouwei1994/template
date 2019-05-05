@@ -1,8 +1,7 @@
 <template>
   <div class="clipView" v-if="viewState">
     <div class="head">
-      <div class="goBack icon" @click="close">&#xe603;</div>
-      上传图像
+      <div class="goBack icon" @click="close">&#xe603;</div>上传图像
       <div class="right" @click="saves">上传</div>
     </div>
     <div class="clipBox" ref="clipBox">
@@ -14,16 +13,16 @@
   </div>
 </template>
 <script>
-import zHeader from './../header/head'
-import clip from './clip'
+import zHeader from "./../header/head";
+import clip from "./clip";
 export default {
   components: {
-    zHeader,
+    zHeader
   },
   props: {
     value: {
-      default: ''
-    },
+      default: ""
+    }
   },
   watch: {
     value(val) {
@@ -33,13 +32,17 @@ export default {
       const _this = this;
       if (val) {
         setTimeout(() => {
-          document.body.style.overflow = 'hidden';
-          _this.$refs.clipBox.addEventListener('touchmove', function(evt) {
-            evt.preventDefault();
-          }, false);
-        },10);
+          document.body.style.overflow = "hidden";
+          _this.$refs.clipBox.addEventListener(
+            "touchmove",
+            function(evt) {
+              evt.preventDefault();
+            },
+            false
+          );
+        }, 10);
       } else {
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = "auto";
       }
     }
   },
@@ -49,8 +52,8 @@ export default {
       //想要图片的比例
       proportion: 50 / 50,
       //挂载clip
-      clip: {},
-    }
+      clip: {}
+    };
   },
   methods: {
     enlarge() {
@@ -63,18 +66,21 @@ export default {
       const _this = this;
       this.clip.saves(function(data) {
         _this.viewState = false;
-        _this.$emit('file', _this.dataURItoBlob(data));
+        _this.$emit("file", _this.dataURItoBlob(data));
       });
     },
     //转换为二进制数据图片
     dataURItoBlob(base64Data) {
       var byteString;
-      if (base64Data.split(',')[0].indexOf('base64') >= 0) {
-        byteString = atob(base64Data.split(',')[1]);
+      if (base64Data.split(",")[0].indexOf("base64") >= 0) {
+        byteString = atob(base64Data.split(",")[1]);
       } else {
-        byteString = unescape(base64Data.split(',')[1]);
+        byteString = unescape(base64Data.split(",")[1]);
       }
-      var mimeString = base64Data.split(',')[0].split(':')[1].split(';')[0];
+      var mimeString = base64Data
+        .split(",")[0]
+        .split(":")[1]
+        .split(";")[0];
       var ia = new Uint8Array(byteString.length);
       for (var i = 0; i < byteString.length; i++) {
         ia[i] = byteString.charCodeAt(i);
@@ -89,7 +95,7 @@ export default {
         setTimeout(() => {
           _this.clip = new clip(_this, _this.$refs.clipBox);
           _this.clip.init(data);
-        })
+        });
       } else {
         _this.viewState = false;
       }
@@ -97,18 +103,17 @@ export default {
     // 关闭
     close() {
       this.viewState = false;
-      this.$emit('close');
+      this.$emit("close");
     }
   },
   mounted() {
     const _this = this;
     this.init(this.value);
-
   }
-}
+};
 </script>
 <style lang="scss">
-@import 'src/style/mixin';
+@import "src/style/mixin";
 .clipView {
   position: fixed;
   top: 0px;
@@ -120,7 +125,7 @@ export default {
 
 .clipBox {
   position: absolute;
-  top: rem(88);
+  top: vw(88);
   left: 0px;
   width: 100%;
   bottom: 0px;
@@ -143,25 +148,25 @@ export default {
   left: 50%;
   cursor: move;
   outline: rgba(0, 0, 0, 0.5) solid 10000px;
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   transform: translateX(-50%) translateY(-50%);
 }
 
 .narrow {
   position: absolute;
-  top: rem(20);
-  right: rem(40);
+  top: vw(20);
+  right: vw(40);
   z-index: 10;
 }
 
 .narrow span {
   display: inline-block;
-  width: rem(36);
-  height: rem(36);
+  width: vw(36);
+  height: vw(36);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: auto 100%;
-  margin-left: rem(20);
+  margin-left: vw(20);
 }
 
 .narrow span:first-child {
@@ -173,30 +178,30 @@ export default {
 }
 
 .head {
-  font-size: rem(36);
+  font-size: vw(36);
   text-align: center;
-  background-color: #FFF;
+  background-color: #fff;
   color: #333333;
   width: 100%;
-  height: rem(88);
-  line-height: rem(88);
+  height: vw(88);
+  line-height: vw(88);
   position: relative;
   .goBack {
     position: absolute;
     left: 0;
-    width: rem(88);
-    font-size: rem(44);
+    width: vw(88);
+    font-size: vw(44);
     color: #323136;
   }
   .right {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 0 rem(30);
-    font-size: rem(30);
+    padding: 0 vw(30);
+    font-size: vw(30);
     color: #323136;
-    height: rem(88);
-    line-height: rem(88);
+    height: vw(88);
+    line-height: vw(88);
   }
 }
 </style>

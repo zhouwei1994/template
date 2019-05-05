@@ -42,7 +42,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../../style/mixin";
-$footerHeight: rem(100);
+$footerHeight: vw(100);
 footer {
   height: $footerHeight;
   .footer_view {
@@ -53,7 +53,7 @@ footer {
     left: 0;
     width: 100%;
     z-index: 2;
-    box-shadow: 0 rem(5) rem(16) rem(0) rgba(0, 0, 0, 0.15);
+    box-shadow: 0 vw(5) vw(16) vw(0) rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: space-between;
     > div {
@@ -63,14 +63,14 @@ footer {
       align-items: center;
       justify-content: center;
       i {
-        width: rem(40);
-        height: rem(40);
+        width: vw(40);
+        height: vw(40);
         background-color: rgb(248, 0, 0);
       }
       span {
-        font-size: rem(26);
+        font-size: vw(26);
         color: #666;
-        margin-top: rem(6);
+        margin-top: vw(6);
       }
       &.active {
         i {

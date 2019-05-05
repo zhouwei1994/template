@@ -374,3 +374,11 @@ export const loadMore = {
     }
   }
 };
+// 浏览器判断
+export const getBrowser = () => {
+  let ua = navigator.userAgent.toLowerCase();
+  if (ua.match(/MicroMessenger/i) == "micromessenger") {
+    return "微信";
+  }
+  return "其他";
+}

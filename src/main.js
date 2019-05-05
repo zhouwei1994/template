@@ -8,13 +8,9 @@ import store from '@/config/store';
 //常用过滤器
 import filter from '@/config/filter';
 Vue.use(filter);
-//头部
-import header from '@/components/header';
-//引用rem配置
-import '@/utils/rem';
 Vue.config.productionTip = false;
-//注册全局组件（头部）
-Vue.component('zHeader', header);
+import zHeader from '@/components/header';
+Vue.component("zHeader", zHeader);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

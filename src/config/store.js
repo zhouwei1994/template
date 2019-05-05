@@ -47,8 +47,12 @@ const mutations = { //触发状态
   },
   //需求缓存的页面
   setKeepAliveList(state, payload) {
-    if (state.keepAliveList.includes(payload.name)) {
+    if (payload.type == "init") {
+      state.keepAliveList = [].concat(payload.list);
+    } else if (payload.type == "add") {
       state.keepAliveList.push(payload.name);
+    } else if (payload.type == "delete") {
+      state.keepAliveList.splice(state.keepAliveList.indexOf(payload.name), 1);
     }
   },
   //储存用户信息

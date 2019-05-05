@@ -1,6 +1,6 @@
 <template>
   <div>
-    <z-header>首页</z-header>
+    <z-header back>首页</z-header>
     <!-- 轮播图 -->
     <swiper class="mod-banner-scroll" :options="swiperOption">
       <swiper-slide v-for="(item,index) of colorList" :key="index">
@@ -53,9 +53,9 @@ export default {
 @import "../../../node_modules/swiper/dist/css/swiper.min.css";
 .swiper-container {
   width: 100%;
-  height: rem(300);
+  height: vw(300);
   .swiper-slide div {
-    height: rem(300);
+    height: vw(300);
   }
 }
 </style>

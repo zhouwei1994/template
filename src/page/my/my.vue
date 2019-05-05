@@ -1,6 +1,6 @@
 <template>
   <div class="myPage">
-    <z-header>我的</z-header>我的
+    <z-header back>我的</z-header>
   </div>
 </template>
 <script>
@@ -14,7 +14,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "src/style/mixin";
 .myPage {
   background-color: #0f0;
 }

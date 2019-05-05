@@ -2,13 +2,27 @@
   <div>
     <div class="addresSelectVal">
       <ul>
-        <li v-for="(item,index) of addressVal" :key="index" :class="{'select':addressIndex == index}" @click="selectType(index)">{{item.name}}</li>
-        <li :class="{'select':selectState == addressIndex}" v-show="selectState < length || selectState >= length &&selectState < 3 && !force" @click="selectType(selectState)">请选择</li>
+        <li
+          v-for="(item,index) of addressVal"
+          :key="index"
+          :class="{'select':addressIndex == index}"
+          @click="selectType(index)"
+        >{{item.name}}</li>
+        <li
+          :class="{'select':selectState == addressIndex}"
+          v-show="selectState < length || selectState >= length &&selectState < 3 && !force"
+          @click="selectType(selectState)"
+        >请选择</li>
       </ul>
     </div>
     <div class="addresBox" ref="scroll">
       <ul>
-        <li v-for="(item,index) of addressList" :key="index" :class="{'select':addressVal.length > addressIndex && item.objId == addressVal[addressIndex].objId}" @click="selectClick(item)">{{item.name}}</li>
+        <li
+          v-for="(item,index) of addressList"
+          :key="index"
+          :class="{'select':addressVal.length > addressIndex && item.objId == addressVal[addressIndex].objId}"
+          @click="selectClick(item)"
+        >{{item.name}}</li>
       </ul>
     </div>
   </div>
@@ -118,7 +132,7 @@ export default {
 <style lang="scss" scoped>
 @import "src/style/mixin";
 .addresSelectVal {
-  padding: 0px rem(10);
+  padding: 0px vw(10);
   border-bottom: 1px solid #ebebeb;
   box-sizing: border-box;
   background-color: #fff;
@@ -128,13 +142,13 @@ export default {
   flex-wrap: wrap;
 }
 .addresSelectVal ul li {
-  margin-left: rem(20);
-  padding: 0px rem(10);
-  height: rem(72);
-  line-height: rem(72);
+  margin-left: vw(20);
+  padding: 0px vw(10);
+  height: vw(72);
+  line-height: vw(72);
   border-bottom: 2px solid #fff;
   box-sizing: border-box;
-  font-size: rem(28);
+  font-size: vw(28);
 }
 .addresSelectVal ul li:first-child {
   margin-left: 0px;
@@ -144,15 +158,15 @@ export default {
   color: $mainColor;
 }
 .addresBox {
-  padding: 0px rem(20);
-  height: rem(420);
+  padding: 0px vw(20);
+  height: vw(420);
   overflow-y: auto;
   background-color: #fff;
 }
 .addresBox ul li {
-  height: rem(72);
-  line-height: rem(72);
-  font-size: rem(28);
+  height: vw(72);
+  line-height: vw(72);
+  font-size: vw(28);
 }
 .addresBox ul li.select {
   color: $mainColor;
