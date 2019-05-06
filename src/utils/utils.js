@@ -161,7 +161,15 @@ export const $alert = function (text = "", options = {}, callback) {
   var alertCancel = document.querySelectorAll(".alertCancel");
   for (var c = 0; c < alertCancel.length; c++) {
     alertCancel[c].onclick = function (e) {
-      document.body.removeChild(e.target.parentNode.parentNode.parentNode);
+      var node = e.target;
+      recursive();
+      function recursive() {
+        if (node.className != "alertCancel") {
+          node = node.parentNode;
+          recursive();
+        }
+      }
+      document.body.removeChild(node.parentNode.parentNode.parentNode);
       callback && callback({
         confirm: false
       })
