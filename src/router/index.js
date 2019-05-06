@@ -101,6 +101,15 @@ router.beforeEach(function (to, from, next) {
       store.commit('setDirection', "fade");
       store.commit('setKeepAliveList', { type: "add", name: to.name });
     } else {
+      if (keepAliveList.length <= 0) {
+        routes.forEach(item => {
+          if (item.meta && item.meta.keepAlive) {
+            keepAliveList.push(item.name);
+          }
+        });
+        historyPage = [].concat(keepAliveList);
+        store.commit('setKeepAliveList', { type: "init", list: keepAliveList });
+      }
       store.commit('setDirection', "in");
       store.commit('setKeepAliveList', { type: "add", name: to.name });
       historyPage.push(to.name);
