@@ -136,6 +136,9 @@ export const $alert = function (text = "", options = {}, callback) {
   createDiv.setAttribute('class', "alertMask");
   createDiv.innerHTML = html;
   document.body.appendChild(createDiv);
+  if (type === 3) {
+    createDiv.firstChild.childNodes[1].childNodes[1].focus();
+  }
   //确认事件
   var alertConfirm = document.querySelectorAll(".alertConfirm");
   for (var i = 0; i < alertConfirm.length; i++) {
