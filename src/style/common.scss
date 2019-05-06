@@ -55,11 +55,6 @@
         cursor: pointer;
         stroke: #909399;
         fill: #909399;
-
-        &:hover {
-          stroke: #f00;
-          fill: #f00;
-        }
       }
     }
 
@@ -92,7 +87,7 @@
 
           &:focus {
             outline: none;
-            border-color: #409eff;
+            border-color: $mainColor;
           }
         }
       }
@@ -126,12 +121,6 @@
           background: #fff;
           border: 1px solid #dcdfe6;
           color: #606266;
-
-          &:hover {
-            color: #409eff;
-            border-color: #c6e2ff;
-            background-color: #ecf5ff;
-          }
         }
 
         &:last-child {
@@ -139,12 +128,6 @@
           border: 1px solid $mainColor;
           color: #fff;
           margin-left: vw(20);
-
-          &:hover {
-            background: #2e8dee;
-            border-color: #2e8dee;
-            color: #fff;
-          }
         }
       }
     }

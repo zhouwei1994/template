@@ -102,6 +102,7 @@ export const $alert = function (text = "", options = {}, callback) {
   var cancelText = options.cancelText || "取消";
   var placeholder = options.placeholder || "请输入";
   var inputType = options.inputType || "text";
+  var inputValue = options.inputValue || "";
   var html = '<div class="alertPopups">';
   html += '<div class="title">';
   html += '<p>' + title + '</p>';
@@ -121,14 +122,14 @@ export const $alert = function (text = "", options = {}, callback) {
   }
   html += '<p>' + text + '</p>';
   if (type === 3) {
-    html += '<input type="' + inputType + '" id="alertInput" placeholder="' + placeholder + '">';
+    html += '<input type="' + inputType + '" id="alertInput" value="' + inputValue + '" placeholder="' + placeholder + '">';
   }
   html += '</div>';
   html += '<div class="alertBut">';
   if (type !== 2) {
     html += '<button class="alertCancel">' + cancelText + '</button>';
   }
-  html += '<button id="alertConfirm">' + confirmText + '</button>';
+  html += '<button class="alertConfirm">' + confirmText + '</button>';
   html += '</div>';
   html += '</div>';
   var createDiv = document.createElement('div');
@@ -136,45 +137,31 @@ export const $alert = function (text = "", options = {}, callback) {
   createDiv.innerHTML = html;
   document.body.appendChild(createDiv);
   //确认事件
-  document.getElementById("alertConfirm").onclick = function () {
-    var value = "";
-    if (type === 3) {
-      value = document.getElementById("alertInput").value;
-      if (callback) {
-        callback({
-          value: value,
-          confirm: true,
-          remove: function () {
-            if (createDiv) {
-              document.body.removeChild(createDiv);
-            }
-          }
-        });
+  var alertConfirm = document.querySelectorAll(".alertConfirm");
+  for (var i = 0; i < alertConfirm.length; i++) {
+    alertConfirm[i].onclick = function (e) {
+      var result = {
+        confirm: true
+      };
+      if (type === 3) {
+        result.value = e.target.parentNode.previousSibling.childNodes[1].value;
+        result.remove = function () {
+          document.body.removeChild(e.target.parentNode.parentNode.parentNode);
+        }
+      } else {
+        document.body.removeChild(e.target.parentNode.parentNode.parentNode);
       }
-    } else {
-      if (callback) {
-        callback({
-          value: value,
-          confirm: true
-        })
-      }
-      if (createDiv) {
-        document.body.removeChild(createDiv);
-      }
+      callback && callback(result);
     }
   }
   //删除事件
   var alertCancel = document.querySelectorAll(".alertCancel");
-  for (var i = 0; i < alertCancel.length; i++) {
-    alertCancel[i].onclick = function () {
-      if (createDiv) {
-        document.body.removeChild(createDiv);
-        if (callback) {
-          callback({
-            confirm: false
-          })
-        }
-      }
+  for (var c = 0; c < alertCancel.length; c++) {
+    alertCancel[c].onclick = function (e) {
+      document.body.removeChild(e.target.parentNode.parentNode.parentNode);
+      callback && callback({
+        confirm: false
+      })
     }
   }
 }
