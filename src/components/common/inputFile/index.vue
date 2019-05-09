@@ -1,5 +1,5 @@
 <template>
-  <input type="file" @change="uploadFile($event)" :multiple="multiple"/>
+  <input type="file" @change="uploadFile($event)" :multiple="length > 1">
 </template>
 <script>
 import qiniuUpload from "./qiniu.js";
@@ -14,18 +14,9 @@ export default {
     value: {
       default: ""
     },
-    //是否多选上传
-    multiple: {
-      type: Boolean,
-      default: false
-    },
     //上传数量
     length: {
-      default: 0
-    },
-    //返回类型 - Array 返回数组  String 返回数组第一个
-    type: {
-      default: "Array"
+      default: 1
     },
     //是否获取图片高宽
     wh: {
@@ -51,7 +42,7 @@ export default {
       //文件数据体
       var files = event.target.files;
       qiniuUpload(files, this.wh, this.length).then(res => {
-        if (_this.type == "Array") {
+        if (_this.length > 1) {
           _this.fileUrl = _this.fileUrl.concat(res);
         } else {
           _this.fileUrl = res[0];

@@ -1,5 +1,5 @@
 import * as qiniu from "qiniu-js";
-import $ajax from "@/config/fetch";
+import $ajax from "@/config/ajax";
 export default function (files, wh, length) {
   //文件名称随机数
   var randomChar = function (l, url = "") {
@@ -10,12 +10,7 @@ export default function (files, wh, length) {
       tmp += x.charAt(Math.ceil(Math.random() * 100000000) % x.length);
     }
     return (
-      "file/upload/" +
-      time.getFullYear() +
-      time.getMonth() +
-      "/" +
-      time.getDate() +
-      "/" +
+      "file/" +
       url +
       time.getTime() +
       tmp
@@ -23,7 +18,7 @@ export default function (files, wh, length) {
   };
   //获取token
   var getToken = function (callback) {
-    $ajax("/apidoc/admin/qn_upload").then(data => {
+    $ajax.get("api/open/v1/qn_upload").then(data => {
       callback(data);
     });
   }
@@ -40,14 +35,13 @@ export default function (files, wh, length) {
     }
 
   }
-  const _this = this;
+  // const _this = this;
   //文件数据体长度
   var len = length == 0 || files.length < length ? files.length : length;
   //图片地址
   var imgs = new Array;
   //token
   var token = "";
-  //上传文件夹
   var folderPath = "";
   //访问前缀
   var visitPrefix = "";
@@ -87,7 +81,7 @@ export default function (files, wh, length) {
       //文件上传配置
       var observable = qiniu.upload(
         files[i],
-        randomChar(8),
+        randomChar(8, folderPath),
         token,
         putExtra,
         config
